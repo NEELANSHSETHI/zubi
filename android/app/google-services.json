@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "275038326670",
+    "firebase_url": "https://zubi-app.firebaseio.com",
+    "project_id": "zubi-app",
+    "storage_bucket": "zubi-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275038326670:android:6a82e5cd620f175abbdedf",
+        "android_client_info": {
+          "package_name": "com.neelansh.zubi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275038326670-pflgiv2gh920fitnvd61n275bi2dkqdr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neelansh.zubi",
+            "certificate_hash": "7a9a2970ed170435b0776d3e96cf8d043648df89"
+          }
+        },
+        {
+          "client_id": "275038326670-u785a6vfij8nrv6u4llhaie68oqrdsif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB10h-k-CNMHoW4oe6MNWRv3UFt5so0aJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275038326670-u785a6vfij8nrv6u4llhaie68oqrdsif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
