@@ -4,11 +4,21 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
+GoogleSignInAccount googleSignInAccount;
+GoogleSignInAuthentication googleSignInAuthentication;
 
 Future<String> signInWithGoogle() async {
-  final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication =
-  await googleSignInAccount.authentication;
+  try {
+    googleSignInAccount = await googleSignIn.signIn();
+  } catch (error) {
+    print("ERROR CAUGHT $error");
+  }
+  if (googleSignInAccount != null)
+    googleSignInAuthentication = await googleSignInAccount.authentication;
+  else {
+    print("CANCELLED");
+    return "cancelled";
+  }
 
   final AuthCredential credential = GoogleAuthProvider.getCredential(
     accessToken: googleSignInAuthentication.accessToken,
@@ -16,7 +26,8 @@ Future<String> signInWithGoogle() async {
   );
 
   final AuthResult user = (await _auth.signInWithCredential(credential));
-  print("Details ARE HERE $user ${user.user.getIdToken()} ${user.user.email} ${user.user.displayName}");
+  print(
+      "Details ARE HERE $user ${user.user.getIdToken()} ${user.user.email} ${user.user.displayName}");
 
   assert(!user.user.isAnonymous);
   assert(await user.user.getIdToken() != null);
@@ -24,12 +35,12 @@ Future<String> signInWithGoogle() async {
   final FirebaseUser currentUser = await _auth.currentUser();
   assert(user.user.uid == currentUser.uid);
 
-  return 'signInWithGoogle succeeded: $user';
+  return 'success';
 }
 
-void signOutGoogle(BuildContext context) async{
+void signOutGoogle(BuildContext context) async {
   await googleSignIn.signOut();
   await _auth.signOut();
-  Navigator.popUntil(context, ModalRoute.withName('/'));  
+  Navigator.popUntil(context, ModalRoute.withName('/'));
   print("User Sign Out");
 }

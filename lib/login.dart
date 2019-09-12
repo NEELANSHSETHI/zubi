@@ -132,14 +132,18 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               InkWell(
                   onTap: () {
-                    signInWithGoogle().whenComplete(() {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return FirstScreen();
-                          },
-                        ),
-                      );
+                    signInWithGoogle().then((result) {
+                      if (result != 'cancelled') {
+                        print('SIGN IN CANCELLED');
+                      }
+                      if (result == 'success')
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return FirstScreen();
+                            },
+                          ),
+                        );
                     });
                   },
                   child: SvgPicture.asset(
