@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zubi/google_sign_in.dart';
+import 'package:zubi/linkedin_credentials.dart';
 import 'package:zubi/utils/colors.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zubi/utils/custom_text_style.dart';
+import 'package:linkedin_login/linkedin_login.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,6 +16,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool logoutUser = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
               InkWell(
                   onTap: () {
                     signInWithGoogle().then((result) {
-                      if (result != 'cancelled') {
+                      if (result == 'cancelled') {
                         print('SIGN IN CANCELLED');
                       }
                       if (result == 'success')
@@ -152,8 +156,52 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 width: 20,
               ),
-              SvgPicture.asset(
-                'assets/linked_in.svg',
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => LinkedInUserWidget(
+                          appBar: AppBar(
+                            title: Text('Login with LinkedIn'),
+                          ),
+                          redirectUrl: REDIRECTURL,
+                          clientId: CLIENTID,
+                          clientSecret: CLIENTSECRET,
+                          destroySession: logoutUser,
+                          onGetUserProfile: (LinkedInUserModel linkedInUser) {
+                            print(
+                                'Access token ${linkedInUser.token.accessToken}');
+                            print(
+                                'First name: ${linkedInUser.firstName.localized.label}');
+                            print(
+                                'Last name: ${linkedInUser.lastName.localized.label}');
+                            setState(() {
+                              logoutUser = false;
+                            });
+                            Navigator.pop(context);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return FirstScreen(
+                                    loginPageState: this,
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                          catchError: (LinkedInErrorObject error) {
+                            print('Error description: ${error.description},'
+                                ' Error code: ${error.statusCode.toString()}');
+                            Navigator.pop(context);
+                          }),
+                      fullscreenDialog: true,
+                    ),
+                  );
+                },
+                child: SvgPicture.asset(
+                  'assets/linked_in.svg',
+                ),
               ),
             ],
           )
@@ -164,15 +212,33 @@ class _LoginPageState extends State<LoginPage> {
 }
 
 class FirstScreen extends StatelessWidget {
+  _LoginPageState loginPageState;
+
+  FirstScreen({this.loginPageState});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         color: Colors.blue[100],
-        child: RaisedButton(
-          onPressed: () {
-            signOutGoogle(context);
-          },
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: () {
+                signOutGoogle(context);
+              },
+            ),
+            RaisedButton(
+              onPressed: () {
+                print('inside');
+                // ignore: invalid_use_of_protected_member
+                this.loginPageState.setState(() {
+                  this.loginPageState.logoutUser = true;
+                });
+                Navigator.popUntil(context, ModalRoute.withName('/'));
+              },
+            )
+          ],
         ),
       ),
     );
