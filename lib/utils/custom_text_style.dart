@@ -3,10 +3,10 @@ import 'package:zubi/utils/colors.dart';
 
 class CustomTextStyle {
   static final TextStyle regularTextStyle = TextStyle(
-      color: Colors.white,
+      color: primaryColor1,
       fontSize: 15,
-      fontFamily: 'GinoraSans',
-      fontWeight: FontWeight.normal);
+      fontFamily: 'Roboto',
+      );
   static final TextStyle medBoldTextStyle =
       regularTextStyle.copyWith(fontWeight: FontWeight.w600);
   static final TextStyle boldTextStyle =

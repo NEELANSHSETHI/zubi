@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:zubi/google_sign_in.dart';
 import 'package:zubi/linkedin_credentials.dart';
+import 'package:zubi/onboarding_template.dart';
 import 'package:zubi/utils/colors.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:zubi/utils/custom_text_style.dart';
@@ -16,7 +17,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  String heading,instruction;
+  Color instructionColor;
   bool logoutUser = false;
+  List list = new List();
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +30,19 @@ class _LoginPageState extends State<LoginPage> {
       body: Stack(
         children: <Widget>[
           Container(
+            height: double.infinity,
+            width: double.infinity,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [primaryColor1, primaryColor2])),
+//                gradient: LinearGradient(
+//                    begin: Alignment.topCenter,
+//                    end: Alignment.bottomCenter,
+//                    stops: [0.0, 1.0],
+//                    colors: [primaryColor1, primaryColor2])
+            image: DecorationImage(
+              image: AssetImage("assets/rectangle_1.png"),
+              fit: BoxFit.cover
+            )
+            ),
           ),
           SvgPicture.asset(
             "assets/curve.svg",
