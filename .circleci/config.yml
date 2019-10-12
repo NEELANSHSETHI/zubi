@@ -54,7 +54,7 @@ jobs:
 #          name: Build APKS
 #          command: ./gradlew --info assemblePRODUCTIONRelease assembleTESTINGDebug
       - store_artifacts:
-          path: app/build/outputs/apk/release
+          path: build/app/outputs/apk/release
           destination: reports
 #      - run:
 #          name: Running dex script
