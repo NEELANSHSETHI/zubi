@@ -278,7 +278,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: TextFormField(
             style: CustomTextStyle.regularTextStyle,
             enabled: true,
-            obscureText: showPassword,
+            obscureText: !showPassword,
             keyboardType: TextInputType.visiblePassword,
             decoration: InputDecoration(
                 fillColor: primaryColor1,
@@ -319,8 +319,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: TextFormField(
             style: CustomTextStyle.regularTextStyle,
             enabled: true,
-            obscureText: showPassword,
-            keyboardType: TextInputType.visiblePassword,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
                 fillColor: primaryColor1,
                 border: InputBorder.none,

@@ -315,8 +315,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: TextFormField(
                 style: CustomTextStyle.regularTextStyle,
                 enabled: true,
-                obscureText: showPassword,
                 keyboardType: TextInputType.visiblePassword,
+                obscureText: !showPassword,
                 decoration: InputDecoration(
                     fillColor: primaryColor1,
                     suffixIcon: IconButton(
@@ -356,8 +356,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: TextFormField(
                 style: CustomTextStyle.regularTextStyle,
                 enabled: true,
-                obscureText: showPassword,
-                keyboardType: TextInputType.visiblePassword,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                     fillColor: primaryColor1,
                     border: InputBorder.none,
@@ -388,8 +387,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: TextFormField(
             style: CustomTextStyle.regularTextStyle,
             enabled: true,
-            obscureText: showPassword,
-            keyboardType: TextInputType.visiblePassword,
+            keyboardType: TextInputType.text,
             decoration: InputDecoration(
                 fillColor: primaryColor1,
                 border: InputBorder.none,
