@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:zubi/ui/common/primary_botton.dart';
 import 'package:zubi/utils/colors.dart';
 import 'package:zubi/utils/custom_text_style.dart';
 import 'package:flutter_svg/svg.dart';
@@ -240,21 +241,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ],
             ),
           ),
-          SizedBox(
-            width: screenWidth * .429,
-            height: screenHeight * .055,
-            child: RaisedButton(
-              onPressed: () => {},
-              color: primaryColor1,
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: Text(
-                "Create My Account",
-                style: CustomTextStyle.regularTextStyle
-                    .copyWith(color: Colors.white),
-              ),
-            ),
+          PrimaryButton(
+            onPressed: () => {},
+            screenHeight: screenHeight,
+            screenWidth: screenWidth,
+            buttonText: "Create my account",
           ),
           SizedBox(
             height: screenHeight * .05,

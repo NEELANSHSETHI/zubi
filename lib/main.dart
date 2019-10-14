@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:zubi/login.dart';
-import 'package:zubi/login_signup/sign_up.dart';
-
-import 'login_signup/login.dart';
+import 'package:zubi/ui/modules/login_signup/login.dart';
+import 'package:zubi/ui/modules/login_signup/sign_up.dart';
+import 'package:zubi/ui/modules/onboarding_pages/onboarding_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Zubi',
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: OnBoardingScreen(),
       routes: {
         '/login' : (_) => LoginScreen(),
         '/signup' : (_) => SignUpScreen(),

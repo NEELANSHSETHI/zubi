@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:zubi/ui/common/primary_botton.dart';
 import 'package:zubi/utils/colors.dart';
 import 'package:zubi/utils/custom_text_style.dart';
 import 'package:flutter_svg/svg.dart';
@@ -145,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   border: Border.all(
                                       color: primaryColor1, width: 1),
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
+                                      BorderRadius.all(Radius.circular(25))),
                               child: _emailField,
                             ),
                             Positioned(
@@ -178,9 +179,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 45,
                             decoration: BoxDecoration(
                               border:
-                              Border.all(color: primaryColor1, width: 1),
+                                  Border.all(color: primaryColor1, width: 1),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(25)),
+                                  BorderRadius.all(Radius.circular(25)),
                             ),
                             child: _passwordField,
                           ),
@@ -203,21 +204,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-          SizedBox(
-            width: screenWidth * .429,
-            height: screenHeight * .055,
-            child: RaisedButton(
-              onPressed: () => {},
-              color: primaryColor1,
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: Text(
-                "Login",
-                style: CustomTextStyle.regularTextStyle
-                    .copyWith(color: Colors.white),
-              ),
-            ),
+          PrimaryButton(
+            onPressed: () => {},
+            screenHeight: screenHeight,
+            screenWidth: screenWidth,
+            buttonText: "Login",
           ),
           SizedBox(
             height: screenHeight * .05,
@@ -251,92 +242,94 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: InkWell(
-                      onTap:(){ Navigator.pushReplacementNamed(context,'/signup');},
-                      child: Text(
-                        "Don't have an account? Sign up",
-                        style: CustomTextStyle.regularTextStyle
-                            .copyWith(decoration: TextDecoration.underline),
-                      ),
-                    )),
-              ))
+            padding: const EdgeInsets.all(16.0),
+            child: Align(
+                alignment: Alignment.bottomCenter,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/signup');
+                  },
+                  child: Text(
+                    "Don't have an account? Sign up",
+                    style: CustomTextStyle.regularTextStyle
+                        .copyWith(decoration: TextDecoration.underline),
+                  ),
+                )),
+          ))
         ],
       ),
     );
   }
 
   get _passwordField => Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-      Expanded(
-        child: Padding(
-          padding: EdgeInsets.only(left: 32),
-          child: TextFormField(
-            style: CustomTextStyle.regularTextStyle,
-            enabled: true,
-            obscureText: !showPassword,
-            keyboardType: TextInputType.visiblePassword,
-            decoration: InputDecoration(
-                fillColor: primaryColor1,
-                suffixIcon: IconButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  icon: Icon(
-                    showPassword ? Icons.visibility : Icons.visibility_off,
-                    color: primaryColor1,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      showPassword = !showPassword;
-                    });
-                  },
-                ),
-                border: InputBorder.none,
-                hintText: 'Password',
-                hintStyle: CustomTextStyle.regularTextStyle
-                    .copyWith(color: Colors.grey)),
-            maxLines: 1,
-            controller: _passwordController,
-            textInputAction: TextInputAction.done,
-            focusNode: focus2,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: 32),
+              child: TextFormField(
+                style: CustomTextStyle.regularTextStyle,
+                enabled: true,
+                obscureText: !showPassword,
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                    fillColor: primaryColor1,
+                    suffixIcon: IconButton(
+                      highlightColor: Colors.transparent,
+                      splashColor: Colors.transparent,
+                      icon: Icon(
+                        showPassword ? Icons.visibility : Icons.visibility_off,
+                        color: primaryColor1,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                    ),
+                    border: InputBorder.none,
+                    hintText: 'Password',
+                    hintStyle: CustomTextStyle.regularTextStyle
+                        .copyWith(color: Colors.grey)),
+                maxLines: 1,
+                controller: _passwordController,
+                textInputAction: TextInputAction.done,
+                focusNode: focus2,
+              ),
+            ),
           ),
-        ),
-      ),
-    ],
-  );
+        ],
+      );
 
   get _emailField => Row(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-      Expanded(
-        child: Padding(
-          padding: EdgeInsets.only(left: 32),
-          child: TextFormField(
-            style: CustomTextStyle.regularTextStyle,
-            enabled: true,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-                fillColor: primaryColor1,
-                border: InputBorder.none,
-                hintText: 'Email',
-                hintStyle: CustomTextStyle.regularTextStyle
-                    .copyWith(color: Colors.grey)),
-            maxLines: 1,
-            controller: _emailController,
-            textInputAction: TextInputAction.next,
-            autofocus: false,
-            focusNode: focus1,
-            onFieldSubmitted: (v) {
-              FocusScope.of(context).requestFocus(focus2);
-            },
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: 32),
+              child: TextFormField(
+                style: CustomTextStyle.regularTextStyle,
+                enabled: true,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    fillColor: primaryColor1,
+                    border: InputBorder.none,
+                    hintText: 'Email',
+                    hintStyle: CustomTextStyle.regularTextStyle
+                        .copyWith(color: Colors.grey)),
+                maxLines: 1,
+                controller: _emailController,
+                textInputAction: TextInputAction.next,
+                autofocus: false,
+                focusNode: focus1,
+                onFieldSubmitted: (v) {
+                  FocusScope.of(context).requestFocus(focus2);
+                },
+              ),
+            ),
           ),
-        ),
-      ),
-    ],
-  );
+        ],
+      );
 }
