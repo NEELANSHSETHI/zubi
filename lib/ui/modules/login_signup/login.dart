@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:zubi/ui/common/primary_botton.dart';
 import 'package:zubi/utils/colors.dart';
 import 'package:zubi/utils/custom_text_style.dart';
-import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,7 +13,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
   FocusNode focus1;
   FocusNode focus2;
   double screenHeight;

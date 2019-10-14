@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:zubi/ui/common/primary_botton.dart';
 import 'package:zubi/utils/colors.dart';
 import 'package:zubi/utils/custom_text_style.dart';
-import 'package:flutter_svg/svg.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
